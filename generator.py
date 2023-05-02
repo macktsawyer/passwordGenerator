@@ -21,9 +21,11 @@ def password_generator(leng):
     for x in range(int(leng)):
         letter = random.randint(0, len(alpha) - 1)
         password = password + alpha[letter]
-    print(password)
-    log_password(password)
+
+    return password
 
 def gen():
-    password_generator(length)
-    encrypt.encryption()
+    pass_phrase = password_generator(length)
+    encrypted = encrypt.encryption(pass_phrase)
+    print(pass_phrase)
+    log_password(encrypted)
