@@ -29,3 +29,8 @@ def gen():
     encrypted = encrypt.encryption(pass_phrase)
     print(pass_phrase)
     log_password(encrypted)
+
+    confirm = input('Would you like to decrypt? ')
+    if confirm == 'Yes' or confirm == 'Y':
+        decrypt = encrypt.decryption(encrypted)
+        print(decrypt)
