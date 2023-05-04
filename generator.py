@@ -1,11 +1,12 @@
 import random
 import datetime
 import encrypt
+import decrypt
+import string
 
-alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
-         "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
-         "s", "t", "u", "v", "w", "x", "y", "z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "@", "#", "$",
-         "%", "^", "&", "*"]
+confirmation_list = ["Yes", "Y", "y", "yes", "confirm", "Confirm"]
+
+alpha = string.ascii_letters + string.digits + string.punctuation
 
 length = input('How long of a password would you like? ')
 
@@ -19,8 +20,8 @@ def log_password(word):
 def password_generator(leng):
     password = ''
     for x in range(int(leng)):
-        letter = random.randint(0, len(alpha) - 1)
-        password = password + alpha[letter]
+        letter = random.choice(alpha)
+        password = password + letter
 
     return password
 
@@ -31,6 +32,6 @@ def gen():
     log_password(encrypted)
 
     confirm = input('Would you like to decrypt? ')
-    if confirm == 'Yes' or confirm == 'Y':
-        decrypt = encrypt.decryption(encrypted)
-        print(decrypt)
+    if confirm in confirmation_list:
+        decryption = decrypt.decryption(encrypted)
+        print(decryption)
