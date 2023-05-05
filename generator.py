@@ -1,5 +1,4 @@
 import random
-import datetime
 import encrypt
 import decrypt
 import string
@@ -12,9 +11,8 @@ length = input('How long of a password would you like? ')
 
 
 def log_password(word):
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open("password_log.txt", "a") as f:
-        f.write(f"{timestamp}: {word}\n")
+    with open("password_log.txt", "w") as f:
+        f.write(f"{word}")
 
 
 def password_generator(leng):
@@ -25,13 +23,18 @@ def password_generator(leng):
 
     return password
 
+
 def gen():
     pass_phrase = password_generator(length)
+    # print(pass_phrase) -----
     encrypted = encrypt.encryption(pass_phrase)
-    print(pass_phrase)
+    # print(encrypted) -----
     log_password(encrypted)
 
     confirm = input('Would you like to decrypt? ')
     if confirm in confirmation_list:
-        decryption = decrypt.decryption(encrypted)
-        print(decryption)
+        with open("password_log.txt", "r") as f:
+            stored = f.read()
+        decryption = decrypt.decryption(stored)
+        # print(decryption) -----
+

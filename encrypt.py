@@ -1,4 +1,7 @@
 import os
+import json
+import string
+import random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -26,6 +29,43 @@ def first_pass(phrase):
     return end_result
 
 
+def second_pass(phrase):
+    print("phrase")
+    key_dict = os.getenv('key_value')
+    destring = json.loads(key_dict)
+    print("destring")
+    print(destring['d'])
+
+
+def make_value_dict():
+    key_value_dict = {}
+    for al in string.ascii_letters:
+        key_value_dict[al] = random.randint(0, 9)
+    for al in string.digits:
+        key_value_dict[al] = random.randint(0, 9)
+    for al in string.punctuation:
+        key_value_dict[al] = random.randint(0, 9)
+
+    dumped = json.dumps(key_value_dict)
+    print("dumped")
+
+    overwrite_key(dumped, '.env')
+
+
+def overwrite_key(intake, file):
+    stringify = str(intake)
+
+    with open(file, "r") as f:
+        temp = f.readlines()
+
+    temp[0] = temp[0].replace('\n', '')
+
+    output = open(file, "w")
+    output.write(f'{temp[0]}\nkey_value = {stringify}')
+    output.flush()
+    os.fsync(output.fileno())
+
+
 def string_results(list_array):
     enc_string = ''
     for new in list_array:
@@ -36,4 +76,7 @@ def string_results(list_array):
 
 def encryption(phrase):
     first = first_pass(phrase)
+    print("first")
+    make_value_dict()
+    second_pass(first)
     return first
