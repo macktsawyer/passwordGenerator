@@ -31,10 +31,10 @@ def first_pass(phrase):
 
 def second_pass(phrase):
     print("phrase")
-    key_dict = os.getenv('key_value')
-    destring = json.loads(key_dict)
+    key_dict = open(".env", "r").readlines()
+    destring = key_dict[1]
     print("destring")
-    print(destring['d'])
+    print(destring)
 
 
 def make_value_dict():
@@ -57,6 +57,7 @@ def overwrite_key(intake, file):
 
     with open(file, "r") as f:
         temp = f.readlines()
+        f.close()
 
     temp[0] = temp[0].replace('\n', '')
 
