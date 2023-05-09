@@ -31,8 +31,12 @@ def second_pass(phrase):
     key_dict = open(".env", "r").readlines()
     string = key_dict[1]
     filtered_dict = utils.string_dict(string)
-    print(phrase)
-    print(filtered_dict)
+    # print(f'Key-value pairs: {filtered_dict}')
+    for char in phrase:
+        print(char)
+        value = filtered_dict[char]
+        for times in range(value):
+            pass
 
 
 def string_first_layer(list_array):
