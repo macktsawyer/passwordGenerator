@@ -22,7 +22,7 @@ def first_pass(phrase):
         matrix = new_matrix
         new_matrix = []
 
-    end_result = string_first_layer(matrix)
+    end_result = string_a_list(matrix)
 
     return end_result
 
@@ -32,14 +32,18 @@ def second_pass(phrase):
     string = key_dict[1]
     filtered_dict = utils.string_dict(string)
     # print(f'Key-value pairs: {filtered_dict}')
+    print(phrase)
     for char in phrase:
-        print(char)
+        # print(char)
         value = filtered_dict[char]
         for times in range(value):
-            pass
+            index_of = phrase.index(char)
+            listed_phrase = list(phrase)
+            listed_phrase.insert(index_of - 3, listed_phrase.pop(index_of))
+            phrase = string_a_list(listed_phrase)
+            print(phrase)
 
-
-def string_first_layer(list_array):
+def string_a_list(list_array):
     enc_string = ''
     for new in list_array:
         enc_string = enc_string + new
