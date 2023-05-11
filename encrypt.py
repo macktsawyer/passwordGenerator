@@ -32,7 +32,7 @@ def second_pass(phrase):
     string = key_dict[1]
     filtered_dict = utils.string_dict(string)
     # print(f'Key-value pairs: {filtered_dict}')
-    print(phrase)
+    # print(phrase)
     for char in phrase:
         # print(char)
         value = filtered_dict[char]
@@ -41,7 +41,8 @@ def second_pass(phrase):
             listed_phrase = list(phrase)
             listed_phrase.insert(index_of - 3, listed_phrase.pop(index_of))
             phrase = string_a_list(listed_phrase)
-            print(phrase)
+            # print(phrase)
+    return phrase
 
 def string_a_list(list_array):
     enc_string = ''
@@ -54,5 +55,5 @@ def string_a_list(list_array):
 def encryption(phrase):
     first = first_pass(phrase)
     utils.make_value_dict()
-    second_pass(first)
-    return first
+    second = second_pass(first)
+    return second

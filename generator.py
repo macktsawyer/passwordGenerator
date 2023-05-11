@@ -26,15 +26,16 @@ def password_generator(leng):
 
 def gen():
     pass_phrase = password_generator(length)
-    # print(f'{pass_phrase} is the pass')
+    print(f'{pass_phrase} is the pass')
     encrypted = encrypt.encryption(pass_phrase)
-    # print(f'{encrypted} is the encrypted pass')
+    print(f'{encrypted} is the encrypted pass')
     log_password(encrypted)
+
 
     confirm = input('Would you like to decrypt? ')
     if confirm in confirmation_list:
         with open("password_log.txt", "r") as f:
             stored = f.read()
         decryption = decrypt.decryption(stored)
-        # print(f'{decryption} is the decrypted pass')
+        print(f'{decryption} is the decrypted pass')
 

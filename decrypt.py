@@ -1,4 +1,5 @@
 import os
+import utils
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,12 +18,29 @@ def first_pass(phrase):
         matrix = new_matrix
         new_matrix = []
 
-    end_result = string_results(matrix)
+    end_result = string_a_list(matrix)
 
     return end_result
 
 
-def string_results(list_array):
+def second_pass(phrase):
+    key_dict = open(".env", "r").readlines()
+    string = key_dict[1]
+    filtered_dict = utils.string_dict(string)
+    # print(f'Key-value pairs: {filtered_dict}')
+    # print(phrase)
+    for char in phrase:
+        # print(char)
+        value = filtered_dict[char]
+        for times in range(value):
+            index_of = phrase.index(char)
+            listed_phrase = list(phrase)
+            listed_phrase.insert(index_of + 3, listed_phrase.pop(index_of))
+            phrase = string_a_list(listed_phrase)
+            # print(phrase)
+    return phrase
+
+def string_a_list(list_array):
     enc_string = ''
     for new in list_array:
         enc_string = enc_string + new
@@ -31,5 +49,7 @@ def string_results(list_array):
 
 
 def decryption(phrase):
-    first = first_pass(phrase)
+    second = second_pass(phrase)
+    first = first_pass(second)
+
     return first
