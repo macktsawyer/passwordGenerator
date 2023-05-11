@@ -44,6 +44,7 @@ def second_pass(phrase):
             # print(phrase)
     return phrase
 
+
 def string_a_list(list_array):
     enc_string = ''
     for new in list_array:
