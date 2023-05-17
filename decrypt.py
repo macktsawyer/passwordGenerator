@@ -40,7 +40,7 @@ def second_pass(phrase):
         for times in range(value):
             index_of = index_of + 3
             if index_of > len(matrix) - 1:
-                index_of = index_of - 10
+                index_of = index_of - (len(matrix) - 1)
         print(index_of)
 
     # phrase = string_a_list(listed_phrase)
