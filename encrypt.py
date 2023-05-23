@@ -41,7 +41,7 @@ def second_pass(phrase):
             listed_phrase = list(phrase)
             listed_phrase.insert(index_of - 3, listed_phrase.pop(index_of))
             phrase = string_a_list(listed_phrase)
-            # print(phrase)
+            # print(index_of)
     return phrase
 
 
